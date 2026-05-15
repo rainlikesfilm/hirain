@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无名二十岁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1814;
+    --muted: #7a7670;
+    --faint: #f0ede8;
+    --rule: #d8d4ce;
+    --accent: #b85c38;
+    --bg: #faf8f5;
+    --serif: 'Noto Serif SC', serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    min-height: 100vh;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    border-bottom: 0.5px solid var(--rule);
+  }
+
+  .site-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: lowercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-links a.active { color: var(--accent); }
+
+  .hero {
+    padding: 5rem 3rem 4rem;
+    max-width: 720px;
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 480px;
+  }
+
+  .divider {
+    margin: 0 3rem;
+    border: none;
+    border-top: 0.5px solid var(--rule);
+  }
+
+  .section {
+    padding: 3.5rem 3rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 0.5px;
+    background: var(--rule);
+  }
+
+  .podcast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: white;
+    border: 0.5px solid var(--rule);
+    border-radius: 3px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+    position: relative;
+  }
+
+  .card:hover {
+    border-color: var(--ink);
+    transform: translateY(-2px);
+  }
+
+  .card-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .card-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border: 0.5px solid var(--rule);
+    border-radius: 2px;
+    color: var(--muted);
+    margin-top: 0.75rem;
+  }
+
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .article-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 1.2rem 0;
+    border-bottom: 0.5px solid var(--rule);
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+
+  .article-row:first-child { border-top: 0.5px solid var(--rule); }
+
+  .article-row:hover .article-title { color: var(--accent); }
+
+  .article-title {
+    font-size: 15px;
+    line-height: 1.5;
+    transition: color 0.15s;
+  }
+
+  .article-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .quotes-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .quote-block {
+    border-left: 2px solid var(--accent);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+  }
+
+  .quote-text {
+    font-size: 16px;
+    line-height: 1.9;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-source {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .about-text {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--muted);
+  }
+
+  .about-text strong { color: var(--ink); font-weight: 400; }
+
+  .links-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ext-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border: 0.5px solid var(--rule);
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .ext-link:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  .ext-link::before {
+    content: '→';
+    color: var(--accent);
+  }
+
+  footer {
+    padding: 2rem 3rem;
+    border-top: 0.5px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .tab-nav {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    border-bottom: 0.5px solid var(--rule);
+  }
+
+  .tab-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    padding: 0.6rem 1.2rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -0.5px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  @media (max-width: 600px) {
+    nav, .section, .hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .divider { margin: 0 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="site-name">无名二十岁</span>
+  <ul class="nav-links">
+    <li><a href="#podcast">播客</a></li>
+    <li><a href="#writing">文章</a></li>
+    <li><a href="#quotes">摘抄</a></li>
+    <li><a href="#about">关于</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p class="hero-label">Rain · 创作者</p>
+  <h1>在<em>意外</em>里<br>找到自己的形状</h1>
+  <p>播客「二拾青年」主播，独立写作者。关注存在、选择与二十几岁的困惑。</p>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="podcast">
+  <div class="section-header">
+    <span class="section-title">播客 · 二拾青年</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(this, 'recent')">最近几期</button>
+    <button class="tab-btn" onclick="switchTab(this, 'picks')">精选</button>
+  </div>
+
+  <div class="tab-pane active" id="tab-recent">
+    <div class="podcast-grid">
+      <div class="card">
+        <div class="card-num">EP. 最新</div>
+        <div class="card-title">我和钱的关系，正在改变</div>
+        <div class="card-meta">制作中</div>
+        <span class="card-tag">财务心态</span>
+      </div>
+      <div class="card">
+        <div class="card-num">EP. 往期</div>
+        <div class="card-title">在这里放你的上一期标题</div>
+        <div class="card-meta">2025</div>
+        <span class="card-tag">存在</span>
+      </div>
+      <div class="card">
+        <div class="card-num">EP. 往期</div>
+        <div class="card-title">在这里放更早一期的标题</div>
+        <div class="card-meta">2025</div>
+        <span class="card-tag">选择</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="tab-picks">
+    <div class="podcast-grid">
+      <div class="card">
+        <div class="card-num">精选</div>
+        <div class="card-title">你最想推荐的一期，放这里</div>
+        <div class="card-meta">四年里最喜欢的</div>
+        <span class="card-tag">推荐</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="writing">
+  <div class="section-header">
+    <span class="section-title">文章 · 无名二十岁</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="articles-list">
+    <div class="article-row">
+      <span class="article-title">在这里放你的代表作标题</span>
+      <span class="article-date">2025</span>
+    </div>
+    <div class="article-row">
+      <span class="article-title">第二篇文章的标题</span>
+      <span class="article-date">2025</span>
+    </div>
+    <div class="article-row">
+      <span class="article-title">第三篇文章的标题</span>
+      <span class="article-date">2024</span>
+    </div>
+    <div class="article-row">
+      <span class="article-title">第四篇文章的标题</span>
+      <span class="article-date">2024</span>
+    </div>
+    <div class="article-row">
+      <span class="article-title">还有更多 →</span>
+      <span class="article-date">公众号</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="quotes">
+  <div class="section-header">
+    <span class="section-title">摘抄</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="quotes-area">
+    <div class="quote-block">
+      <div class="quote-text">「把你最喜欢的一句摘抄放在这里。」</div>
+      <div class="quote-source">— 作者 / 书名</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">「第二句摘抄，可以是卡缪、维特根斯坦，或者任何让你停下来的句子。」</div>
+      <div class="quote-source">— 作者 / 书名</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">「第三句。」</div>
+      <div class="quote-source">— 作者 / 书名</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="about">
+  <div class="section-header">
+    <span class="section-title">关于</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>我叫 Rain，27岁。<br><br>
+      做播客<strong>「二拾青年」</strong>四年，写公众号<strong>「无名二十岁」</strong>。<br><br>
+      关注的问题大概是：一个人怎么在时代的噪音里，找到属于自己的声音。<br><br>
+      这个页面是我所有创作的入口。</p>
+    </div>
+    <div class="links-col">
+      <a class="ext-link" href="#">播客「二拾青年」</a>
+      <a class="ext-link" href="#">公众号「无名二十岁」</a>
+      <a class="ext-link" href="#">小红书</a>
+      <a class="ext-link" href="#">联系我</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Rain · 无名二十岁</p>
+  <p>上海</p>
+</footer>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
