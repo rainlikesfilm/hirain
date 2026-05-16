@@ -18,7 +18,6 @@
   }
   body { background: var(--bg); color: var(--ink); font-family: var(--body); min-height: 100vh; }
   
-  /* 布局收窄，增加页边距 */
   .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
 
   nav { display: flex; justify-content: space-between; align-items: center; padding: 1.75rem 0; border-bottom: 0.5px solid var(--rule); }
@@ -28,10 +27,14 @@
   .nav-links a:hover { color: var(--ink); }
 
   .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; padding: 4rem 0; border-bottom: 0.5px solid var(--rule); align-items: center; }
-  .hero-label { font-family: var(--wqy); font-size: 11px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .hero-label { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.25rem; }
   .hero h1 { font-family: var(--wqy); font-size: 1.8rem; font-weight: 500; line-height: 1.5; letter-spacing: 0.02em; margin-bottom: 1.25rem; }
   .hero h1 em { font-style: normal; color: var(--accent); }
   .hero p { font-family: var(--wqy); font-size: 14px; line-height: 1.9; color: var(--muted); }
+
+  .focus-areas { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.75rem; border-top: 0.5px dashed var(--rule); padding-top: 1.25rem; }
+  .focus-label { font-family: var(--mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .focus-content { font-family: var(--wqy); font-size: 13px; color: var(--ink); letter-spacing: 0.05em; }
 
   .hero-right { display: flex; flex-direction: column; gap: 1.2rem; padding-left: 2rem; border-left: 0.5px solid var(--rule); }
   .stat-row { display: flex; flex-direction: column; gap: 0.25rem; }
@@ -47,7 +50,7 @@
   .section-line { flex: 1; height: 0.5px; background: var(--rule); }
   .section-more { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; white-space: nowrap; transition: color 0.2s; }
 
-  .podcast-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .podcast-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
   .card { background: white; border: 0.5px solid var(--rule); border-radius: 3px; padding: 1.25rem 1.5rem; text-decoration: none; color: inherit; display: block; transition: border-color 0.2s; }
   .card:hover { border-color: var(--ink); }
   .card-num { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 0.6rem; }
@@ -94,9 +97,14 @@
 
   <div class="hero">
     <div class="hero-left">
-      <p class="hero-label">Rain · STAY HUNGRY,STAY FOOLISH</p>
+      <p class="hero-label">RAIN · STAY HUNGRY,STAY FOOLISH</p>
       <h1>在<em>不确定性</em>中，<br>找到自己与世界的位置</h1>
-      <p>一名关注"人"的创作者，持续记录这个时代里青年存在的困惑与选择。</p>
+      <p>我是一名关注"人"的创作者，记录这个时代里青年人困惑与选择。</p>
+      
+      <div class="focus-areas">
+        <span class="focus-label">Focus /</span>
+        <span class="focus-content">哲学 / 心理学 / AI / 投资 / 商业</span>
+      </div>
     </div>
     <div class="hero-right">
       <div class="stat-row">
@@ -125,17 +133,21 @@
       <a class="section-more" href="https://www.xiaoyuzhoufm.com/podcast/621ac58647022559a6df153b" target="_blank">全部收听 →</a>
     </div>
     <div class="podcast-grid">
-      <a class="card" href="#" target="_blank">
+      <a class="card" href="https://www.xiaoyuzhoufm.com/episode/699321cbde29766da9c06fd9" target="_blank">
+        <div class="card-num">E56</div>
+        <div class="card-title">我们在因为什么而快乐？工具理性与幸福的距离</div>
+      </a>
+      <a class="card" href="https://www.xiaoyuzhoufm.com/episode/696ca02aef1cf272a705cd74" target="_blank">
         <div class="card-num">E54</div>
         <div class="card-title">冥想、放松、如其所是</div>
       </a>
-      <a class="card" href="#" target="_blank">
+      <a class="card" href="https://www.xiaoyuzhoufm.com/episode/689f3ee942cc2798e7c38db5" target="_blank">
         <div class="card-num">E47</div>
         <div class="card-title">爱的语言与流动：如何接纳它的刺痛</div>
       </a>
-      <a class="card" href="#" target="_blank">
+      <a class="card" href="https://www.xiaoyuzhoufm.com/episode/68da5971522b40626cd500b6" target="_blank">
         <div class="card-num">E48</div>
-        <div class="card-title">所谓长大，就是学着不再轻信评价</div>
+        <div class="card-title">所谓长大，就是学着不再轻信别人对自己的评价</div>
       </a>
     </div>
   </section>
@@ -181,7 +193,7 @@
     <div class="quotes-area">
       <div class="quote-block">
         <div class="quote-text">「当你遇到一个难关，或者有人要来找你麻烦的时候，你可以把这个人想象成一个能够预知未来、并且爱你的人。他希望你成就不凡...你应该敞开心扉，勇敢地迈向新的方向。」</div>
-        <div class="quote-source">— 孟岩，《无人知晓》</div>
+        <div class="quote-source">— 孟岩,《无人知晓》</div>
       </div>
       <div class="quote-block">
         <div class="quote-text">"Where you come from is gone, where you thought you were going to never was there, and where you are is no good unless you can get away from it."</div>
@@ -204,8 +216,8 @@
         <p>我叫 Rain，95后，一名四年自媒体创作者。关注的问题：一个人如何在时代中做出选择并活出自己？<br><br>此页面是我的一些精选作品，希望对你有所启发。</p>
       </div>
       <div class="links-col">
-        <a class="ext-link" href="#" target="_blank">播客「二拾青年」</a>
-        <a class="ext-link" href="#" target="_blank">小红书</a>
+        <a class="ext-link" href="https://www.xiaoyuzhoufm.com/podcast/621ac58647022559a6df153b" target="_blank">播客「二拾青年」</a>
+        <a class="ext-link" href="https://xhslink.com/m/9hTMtIXXEdy" target="_blank">小红书</a>
         <a class="ext-link" href="mailto:rain199908@qq.com">联系我</a>
       </div>
     </div>
